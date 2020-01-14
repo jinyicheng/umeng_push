@@ -20,50 +20,21 @@ return [
 ];
 
 ```
-配置alias:
-
-```php
-    'aliases' => [
-        'Umeng' => jinyicheng\umeng_push\Facades\Umeng::class,
-    ],
-```
 
 生成配置文件:
 
 ```php
-    php artisan vendor:publish   
+    php think vendor:publish   
 ```
 
-在配置文件umeng.php中填入appkey以及master_secret既可完成配置
-
-## 在Lumen 5.*中配置
-
-打开bootstrap目录下的app.php文件,注册provider:
-
-```php
-    $app->register(jinyicheng\umeng_push\UmengServiceProvider::class);
-```
-
-配置alias:
-
-```php
-    class_alias('jinyicheng\umeng_push\Facades\Umeng','Umeng');
-```
-
-生成配置文件:
-
-```php
-    php think vendor:publish 
-```
-
-在配置文件umeng.php中填入appkey以及master_secret既可完成配置
+在配置文件umeng_push.php中填入appkey以及master_secret既可完成配置
 
 ## 用法
 
 Android用法:
 ```php
 
-    use Umeng;
+    use jinyicheng\umeng_push;
     
     $device_token = 'xxxx';
     $predefined = array('ticker' => 'android ticker' ,...);
@@ -76,7 +47,7 @@ IOS用法:
 
 ```php
     
-    use Umeng;
+    use jinyicheng\umeng_push;
     
     $device_token = 'xxxx';
     $predefined = array('alert' => 'ios alert' ,...);
