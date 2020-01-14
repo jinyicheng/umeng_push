@@ -1,0 +1,26 @@
+{
+    "name": "jinyicheng/umeng_push",
+    "description": "umeng for thinkphp6.*",
+    "keywords": [
+        "thinkphp",
+        "tp",
+        "umeng"
+    ],
+    "homepage": "https://github.com/jinyicheng/umeng_push",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jinyicheng",
+            "email": "234067496@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "topthink/framework": "6.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "jinyicheng\\umeng_push\\": "src"
+        }
+    }
+}
