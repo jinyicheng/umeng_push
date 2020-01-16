@@ -8,6 +8,7 @@ use jinyicheng\umeng_push\Pusher\UmengPusher;
 class UmengServiceProvider extends ServiceProvider
 {
     protected $defer = true;
+
     /**
      * Perform post-registration booting of services.
      *
@@ -17,7 +18,7 @@ class UmengServiceProvider extends ServiceProvider
     {
         //
         $this->publishes([
-            __DIR__.'/config.php' => base_path('config/umeng.php'),
+            __DIR__ . '/config.php' => base_path('config/umeng.php'),
         ]);
     }
 
@@ -29,7 +30,7 @@ class UmengServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        $this->app->singleton('umeng',function($app){
+        $this->app->singleton('umeng', function ($app) {
             return new UmengPusher();
         });
     }

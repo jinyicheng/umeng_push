@@ -2,8 +2,8 @@
 
 namespace jinyicheng\umeng_push;
 
-use think\facade\Log;
 use jinyicheng\umeng_push\Exception\UmengException;
+use think\facade\Log;
 
 abstract class AndroidNotification extends UmengNotification
 {

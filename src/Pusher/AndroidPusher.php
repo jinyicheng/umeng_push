@@ -10,7 +10,6 @@ use jinyicheng\umeng_push\Android\AndroidFilecast;
 use jinyicheng\umeng_push\Android\AndroidGroupcast;
 use jinyicheng\umeng_push\Android\AndroidListcast;
 use jinyicheng\umeng_push\Android\AndroidUnicast;
-use think\facade\Log;
 
 class AndroidPusher extends Pusher
 {
@@ -22,12 +21,13 @@ class AndroidPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendBroadcast($predefined = [], $extraField = []) {
+    public function sendBroadcast($predefined = [], $extraField = [])
+    {
         $brocast = new AndroidBroadcast();
 
         $brocast->setAppMasterSecret($this->appMasterSecret);
-        $brocast->setPredefinedKeyValue("appkey",           $this->appKey);
-        $brocast->setPredefinedKeyValue("timestamp",        $this->timestamp);
+        $brocast->setPredefinedKeyValue("appkey", $this->appKey);
+        $brocast->setPredefinedKeyValue("timestamp", $this->timestamp);
 
         foreach ($predefined as $key => $val) {
             $brocast->setPredefinedKeyValue($key, $val);
@@ -50,12 +50,13 @@ class AndroidPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendUnicast($device_tokens = '', $predefined= [], $extraField = []) {
+    public function sendUnicast($device_tokens = '', $predefined = [], $extraField = [])
+    {
         $unicast = new AndroidUnicast();
         $unicast->setAppMasterSecret($this->appMasterSecret);
-        $unicast->setPredefinedKeyValue("appkey",           $this->appKey);
-        $unicast->setPredefinedKeyValue("timestamp",        $this->timestamp);
-        $unicast->setPredefinedKeyValue("device_tokens",    $device_tokens);
+        $unicast->setPredefinedKeyValue("appkey", $this->appKey);
+        $unicast->setPredefinedKeyValue("timestamp", $this->timestamp);
+        $unicast->setPredefinedKeyValue("device_tokens", $device_tokens);
 
         foreach ($predefined as $key => $val) {
             $unicast->setPredefinedKeyValue($key, $val);
@@ -78,12 +79,13 @@ class AndroidPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendListcast($device_tokens = '', $predefined= [], $extraField = []){
+    public function sendListcast($device_tokens = '', $predefined = [], $extraField = [])
+    {
         $listcast = new AndroidListcast();
         $listcast->setAppMasterSecret($this->appMasterSecret);
-        $listcast->setPredefinedKeyValue("appkey",           $this->appKey);
-        $listcast->setPredefinedKeyValue("timestamp",        $this->timestamp);
-        $listcast->setPredefinedKeyValue("device_tokens",    $device_tokens);
+        $listcast->setPredefinedKeyValue("appkey", $this->appKey);
+        $listcast->setPredefinedKeyValue("timestamp", $this->timestamp);
+        $listcast->setPredefinedKeyValue("device_tokens", $device_tokens);
 
         foreach ($predefined as $key => $val) {
             $listcast->setPredefinedKeyValue($key, $val);
@@ -106,11 +108,12 @@ class AndroidPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendFilecast($fileContents = '', $predefined= [],$extraField = []) {
+    public function sendFilecast($fileContents = '', $predefined = [], $extraField = [])
+    {
         $filecast = new AndroidFilecast();
         $filecast->setAppMasterSecret($this->appMasterSecret);
-        $filecast->setPredefinedKeyValue("appkey",           $this->appKey);
-        $filecast->setPredefinedKeyValue("timestamp",        $this->timestamp);
+        $filecast->setPredefinedKeyValue("appkey", $this->appKey);
+        $filecast->setPredefinedKeyValue("timestamp", $this->timestamp);
 
         foreach ($predefined as $key => $val) {
             $filecast->setPredefinedKeyValue($key, $val);
@@ -127,6 +130,8 @@ class AndroidPusher extends Pusher
 
     }
 
+    
+
     /**
      * Android组播
      * @param array $filter
@@ -135,13 +140,14 @@ class AndroidPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendGroupcast($filter = [], $predefined= [], $extraField = []) {
+    public function sendGroupcast($filter = [], $predefined = [], $extraField = [])
+    {
         $groupcast = new AndroidGroupcast();
         $groupcast->setAppMasterSecret($this->appMasterSecret);
-        $groupcast->setPredefinedKeyValue("appkey",           $this->appKey);
-        $groupcast->setPredefinedKeyValue("timestamp",        $this->timestamp);
+        $groupcast->setPredefinedKeyValue("appkey", $this->appKey);
+        $groupcast->setPredefinedKeyValue("timestamp", $this->timestamp);
 
-        $groupcast->setPredefinedKeyValue("filter",           $filter);
+        $groupcast->setPredefinedKeyValue("filter", $filter);
 
         foreach ($predefined as $key => $val) {
             $groupcast->setPredefinedKeyValue($key, $val);
@@ -164,14 +170,15 @@ class AndroidPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendCustomizedcast($alias = '', $alias_type = '', $predefined= [], $extraField = []) {
+    public function sendCustomizedcast($alias = '', $alias_type = '', $predefined = [], $extraField = [])
+    {
         $customizedcast = new AndroidCustomizedcast();
         $customizedcast->setAppMasterSecret($this->appMasterSecret);
-        $customizedcast->setPredefinedKeyValue("appkey",           $this->appKey);
-        $customizedcast->setPredefinedKeyValue("timestamp",        $this->timestamp);
+        $customizedcast->setPredefinedKeyValue("appkey", $this->appKey);
+        $customizedcast->setPredefinedKeyValue("timestamp", $this->timestamp);
 
-        $customizedcast->setPredefinedKeyValue("alias",            $alias);
-        $customizedcast->setPredefinedKeyValue("alias_type",       $alias_type);
+        $customizedcast->setPredefinedKeyValue("alias", $alias);
+        $customizedcast->setPredefinedKeyValue("alias_type", $alias_type);
 
         foreach ($predefined as $key => $val) {
             $customizedcast->setPredefinedKeyValue($key, $val);
@@ -194,11 +201,12 @@ class AndroidPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendCustomizedcastFileId($file_contents = '', $predefined= [], $extraField = []) {
+    public function sendCustomizedcastFileId($file_contents = '', $predefined = [], $extraField = [])
+    {
         $customizedcast = new AndroidCustomizedcast();
         $customizedcast->setAppMasterSecret($this->appMasterSecret);
-        $customizedcast->setPredefinedKeyValue("appkey",           $this->appKey);
-        $customizedcast->setPredefinedKeyValue("timestamp",        $this->timestamp);
+        $customizedcast->setPredefinedKeyValue("appkey", $this->appKey);
+        $customizedcast->setPredefinedKeyValue("timestamp", $this->timestamp);
 
         $customizedcast->uploadContents($file_contents);
 

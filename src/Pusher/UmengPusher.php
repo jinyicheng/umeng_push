@@ -6,7 +6,9 @@ class UmengPusher
 {
     private $android = null;
     private $ios = null;
-    public function __construct() {
+
+    public function __construct()
+    {
         $iosAppKey = config('umeng.ios_app_key');
         $iosAppMasterSecret = config('umeng.ios_app_master_secret');
         $androidAppKey = config('umeng.android_app_key');
@@ -16,11 +18,13 @@ class UmengPusher
         $this->ios = new IOSPusher($iosAppKey, $iosAppMasterSecret);
     }
 
-    public function android(){
+    public function android()
+    {
         return $this->android;
     }
 
-    public function ios(){
+    public function ios()
+    {
         return $this->ios;
     }
 }

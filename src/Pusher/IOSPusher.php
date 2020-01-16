@@ -10,7 +10,7 @@ use jinyicheng\umeng_push\IOS\IOSFilecast;
 use jinyicheng\umeng_push\IOS\IOSGroupcast;
 use jinyicheng\umeng_push\IOS\IOSListcast;
 use jinyicheng\umeng_push\IOS\IOSUnicast;
-use think\facade\Log;
+
 class IOSPusher extends Pusher
 {
 
@@ -21,11 +21,12 @@ class IOSPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendBroadcast($predefined= [], $customField= []) {
+    public function sendBroadcast($predefined = [], $customField = [])
+    {
         $brocast = new IOSBroadcast();
         $brocast->setAppMasterSecret($this->appMasterSecret);
-        $brocast->setPredefinedKeyValue("appkey",           $this->appKey);
-        $brocast->setPredefinedKeyValue("timestamp",        $this->timestamp);
+        $brocast->setPredefinedKeyValue("appkey", $this->appKey);
+        $brocast->setPredefinedKeyValue("timestamp", $this->timestamp);
 
         foreach ($predefined as $key => $val) {
             $brocast->setPredefinedKeyValue($key, $val);
@@ -48,12 +49,13 @@ class IOSPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendUnicast($device_tokens = '', $predefined= [], $customField= []) {
+    public function sendUnicast($device_tokens = '', $predefined = [], $customField = [])
+    {
         $unicast = new IOSUnicast();
         $unicast->setAppMasterSecret($this->appMasterSecret);
-        $unicast->setPredefinedKeyValue("appkey",           $this->appKey);
-        $unicast->setPredefinedKeyValue("timestamp",        $this->timestamp);
-        $unicast->setPredefinedKeyValue("device_tokens",   $device_tokens);
+        $unicast->setPredefinedKeyValue("appkey", $this->appKey);
+        $unicast->setPredefinedKeyValue("timestamp", $this->timestamp);
+        $unicast->setPredefinedKeyValue("device_tokens", $device_tokens);
 
         foreach ($predefined as $key => $val) {
             $unicast->setPredefinedKeyValue($key, $val);
@@ -75,12 +77,13 @@ class IOSPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendListcast($device_tokens = '', $predefined= [], $customField= []) {
+    public function sendListcast($device_tokens = '', $predefined = [], $customField = [])
+    {
         $listcast = new IOSListcast();
         $listcast->setAppMasterSecret($this->appMasterSecret);
-        $listcast->setPredefinedKeyValue("appkey",           $this->appKey);
-        $listcast->setPredefinedKeyValue("timestamp",        $this->timestamp);
-        $listcast->setPredefinedKeyValue("device_tokens",   $device_tokens);
+        $listcast->setPredefinedKeyValue("appkey", $this->appKey);
+        $listcast->setPredefinedKeyValue("timestamp", $this->timestamp);
+        $listcast->setPredefinedKeyValue("device_tokens", $device_tokens);
 
         foreach ($predefined as $key => $val) {
             $listcast->setPredefinedKeyValue($key, $val);
@@ -101,11 +104,12 @@ class IOSPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendFilecast($fileContents = '', $predefined= [], $customField= []) {
+    public function sendFilecast($fileContents = '', $predefined = [], $customField = [])
+    {
         $filecast = new IOSFilecast();
         $filecast->setAppMasterSecret($this->appMasterSecret);
-        $filecast->setPredefinedKeyValue("appkey",           $this->appKey);
-        $filecast->setPredefinedKeyValue("timestamp",        $this->timestamp);
+        $filecast->setPredefinedKeyValue("appkey", $this->appKey);
+        $filecast->setPredefinedKeyValue("timestamp", $this->timestamp);
 
         foreach ($predefined as $key => $val) {
             $filecast->setPredefinedKeyValue($key, $val);
@@ -129,25 +133,26 @@ class IOSPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendGroupcast($filter = [], $predefined= [], $customField= []) {
-            $groupcast = new IOSGroupcast();
-            $groupcast->setAppMasterSecret($this->appMasterSecret);
-            $groupcast->setPredefinedKeyValue("appkey",           $this->appKey);
-            $groupcast->setPredefinedKeyValue("timestamp",        $this->timestamp);
-            // Set the filter condition
-            $groupcast->setPredefinedKeyValue("filter",           $filter);
+    public function sendGroupcast($filter = [], $predefined = [], $customField = [])
+    {
+        $groupcast = new IOSGroupcast();
+        $groupcast->setAppMasterSecret($this->appMasterSecret);
+        $groupcast->setPredefinedKeyValue("appkey", $this->appKey);
+        $groupcast->setPredefinedKeyValue("timestamp", $this->timestamp);
+        // Set the filter condition
+        $groupcast->setPredefinedKeyValue("filter", $filter);
 
-            foreach ($predefined as $key => $val) {
-                $groupcast->setPredefinedKeyValue($key, $val);
-            }
+        foreach ($predefined as $key => $val) {
+            $groupcast->setPredefinedKeyValue($key, $val);
+        }
 
-            $groupcast->setPredefinedKeyValue("production_mode", $this->production_mode);
+        $groupcast->setPredefinedKeyValue("production_mode", $this->production_mode);
 
-            foreach ($customField as $key => $val) {
-                $groupcast->setCustomizedField($key, $val);
-            }
+        foreach ($customField as $key => $val) {
+            $groupcast->setCustomizedField($key, $val);
+        }
 
-            return $groupcast->send();
+        return $groupcast->send();
     }
 
     /** IOS自定义播,通过alias
@@ -158,11 +163,12 @@ class IOSPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendCustomizedcast($alias = '', $alias_type = '', $predefined= [], $customField= []) {
+    public function sendCustomizedcast($alias = '', $alias_type = '', $predefined = [], $customField = [])
+    {
         $customizedcast = new IOSCustomizedcast();
         $customizedcast->setAppMasterSecret($this->appMasterSecret);
-        $customizedcast->setPredefinedKeyValue("appkey",           $this->appKey);
-        $customizedcast->setPredefinedKeyValue("timestamp",        $this->timestamp);
+        $customizedcast->setPredefinedKeyValue("appkey", $this->appKey);
+        $customizedcast->setPredefinedKeyValue("timestamp", $this->timestamp);
 
         $customizedcast->setPredefinedKeyValue("alias", $alias);
         // Set your alias_type here
@@ -188,11 +194,12 @@ class IOSPusher extends Pusher
      * @return mixed
      * @throws \jinyicheng\umeng_push\Exception\UmengException
      */
-    public function sendCustomizedcastFileId($file_contents = '', $predefined= [], $customField = []) {
+    public function sendCustomizedcastFileId($file_contents = '', $predefined = [], $customField = [])
+    {
         $customizedcast = new IOSCustomizedcast();
         $customizedcast->setAppMasterSecret($this->appMasterSecret);
-        $customizedcast->setPredefinedKeyValue("appkey",           $this->appKey);
-        $customizedcast->setPredefinedKeyValue("timestamp",        $this->timestamp);
+        $customizedcast->setPredefinedKeyValue("appkey", $this->appKey);
+        $customizedcast->setPredefinedKeyValue("timestamp", $this->timestamp);
 
         $customizedcast->uploadContents($file_contents);
 
