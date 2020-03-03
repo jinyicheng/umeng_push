@@ -16,15 +16,11 @@ return [
     'ios_app_master_secret' => '',
     'android_app_key' => '',
     'android_app_master_secret' => '',
-    'production_mode' => env('UMENG_MODE', false)
+    'production_mode' => env('UMENG_MODE', false),
+    'mipush'=>false,//可选，默认为false。当为true时，表示MIUI、EMUI、Flyme系统设备离线转为系统下发
+    'mi_activity'=>''//可选，mipush值为true时生效，表示走系统通道时打开指定页面acitivity的完整包路径。
 ];
 
-```
-
-生成配置文件:
-
-```php
-    php think vendor:publish   
 ```
 
 在配置文件umeng_push.php中填入appkey以及master_secret既可完成配置
@@ -75,5 +71,5 @@ IOS用法:
 ## Exception
 
 程序不处理异常,可根据业务情况自行处理, 若抛出异常,可通过 `e->getHttpCode()` 获取http状态码, 通过 `e->getErrCode()`获取umeng返回的错误码.
-使用过程中若出错,可自行查看Laravel或Lumen的Log日志# umeng
+使用过程中若出错,可自行查看Thinkphp的Log日志# umeng
 
