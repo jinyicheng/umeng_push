@@ -36,7 +36,9 @@ abstract class IOSNotification extends UmengNotification
             throw new UmengException("key should be a string!");
         }
         if (in_array($key, $this->DATA_KEYS)) {
-            $this->data[$key] = $value;
+            if(!in_array($key, ["mipush","mi_activity"])){
+                $this->data[$key] = $value;
+            }
         } else if (in_array($key, $this->APS_KEYS)) {
             $this->data["payload"]["aps"][$key] = $value;
         } else if (in_array($key, $this->POLICY_KEYS)) {
